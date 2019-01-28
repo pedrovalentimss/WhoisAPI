@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div class="jumbotron boxlogin">
+    <center>
+        <form action="/Home/ConsultaDominio" method="post">
+            <label>Digite o domínio que deseja consultar:</label><br>
+            <input type="text" class="form-control" name="dominio" />
+            <input type="submit" class="btn btn-success" value="Pesquisar" />
+        </form>
+        @if (Model != null)
+        {
+            var status = string.IsNullOrEmpty(@Model.Status) ? "Disponível para registro" : "Registrado";
+            <p><b>Domínio:</b> @Model.Dominio</p>
+            <p><b>Status:</b> @status</p>
+
+            if (status != "Disponível para registro")
+            {
+                <p><b>Data de registro:</b> @Model.DataRegistro</p>
+                <p><b>Data da última alteração:</b> @Model.DataUpdate</p>
+                <p><b>Data de expiração:</b> @Model.DataExpire</p>
+                for (var i = 0; i < @Model.DNS.Length; i++)
+                {
+                    var dns = i + 1;
+                    <p><b>Name Server @dns:</b> @Model.DNS[i]</p>
+                }
+            }
+            else
+            {
+
+            }
+        }
+    </center>
+</div>

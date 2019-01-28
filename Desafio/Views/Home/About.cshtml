@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Histórico de  consultas:";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" />
+<div class="jumbotron boxlogin">
+    <center><h2>@ViewBag.Title</h2></center>
+    <h3>Domínios:</h3>
+
+    @foreach (var dominio in Model)
+    {
+        <p>@dominio.Dominio</p>
+    }
+</div>
